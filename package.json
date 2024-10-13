@@ -1,22 +1,42 @@
 {
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vue-tsc && vite build"
-    },
-    "devDependencies": {
-        "@inertiajs/vue3": "^1.0.0",
-        "@tailwindcss/forms": "^0.5.3",
-        "@vitejs/plugin-vue": "^5.0.0",
-        "autoprefixer": "^10.4.12",
-        "axios": "^1.7.4",
-        "laravel-vite-plugin": "^1.0",
-        "postcss": "^8.4.31",
-        "tailwindcss": "^3.2.1",
-        "typescript": "^5.5.3",
-        "vite": "^5.0",
-        "vue": "^3.4.0",
-        "vue-tsc": "^2.0.24"
-    }
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@iconify-json/radix-icons": "^1.2.0",
+    "@iconify/vue": "^4.1.2",
+    "@inertiajs/vue3": "^1.0.0",
+    "@inspira-ui/plugins": "^0.0.1",
+    "@tailwindcss/forms": "^0.5.3",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.4",
+    "laravel-vite-plugin": "^1.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.2.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.0",
+    "vue": "^3.4.0",
+    "vue-tsc": "^2.0.24"
+  },
+  "dependencies": {
+    "@prettier/plugin-php": "^0.22.2",
+    "@radix-icons/vue": "^1.0.0",
+    "@tanstack/vue-query": "^5.59.1",
+    "@vueuse/core": "^11.1.0",
+    "@vueuse/motion": "^2.2.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.3.0",
+    "embla-carousel-vue": "^8.3.0",
+    "lucide-vue-next": "^0.447.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "radix-vue": "^1.9.6",
+    "tailwind-merge": "^2.5.3",
+    "tailwindcss-animate": "^1.0.7"
+  }
 }

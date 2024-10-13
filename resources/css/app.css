@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  @apply selection:bg-amber-300 dark:text-white dark:selection:bg-amber-700;
+}
