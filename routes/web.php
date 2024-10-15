@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -20,10 +21,11 @@ use Inertia\Inertia;
 Route::get('/', [LandingPageController::class, 'index']);
 
 Route::get('/dashboard', function () {
-  return Inertia::render('Dashboard');
+  return Inertia::render('dashboard/Index');
 })
   ->middleware(['auth', 'verified'])
   ->name('dashboard');
+Route::get('/dashboard/products', [DashboardController::class, 'products']);
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -8,10 +8,16 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
+  public function index()
+  {
+    $allProducts = Product::all();
+    return $allProducts;
+  }
+
   /**
    * Display a listing of the resource.
    */
-  public function index()
+  public function showAll()
   {
     $allProducts = Product::all();
     return Inertia::render('Products', [
@@ -35,8 +41,9 @@ class ProductController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Product $product)
+  public function show(int $id)
   {
+    $product = Product::whereId($id)->with('category')->get()->get(0);
     $productsInSameCategory = Product::inRandomOrder()
       ->where('category_id', $product->category_id)
       ->limit(4)

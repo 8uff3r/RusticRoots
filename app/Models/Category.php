@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -31,7 +31,7 @@ class Category extends Model
   use HasFactory;
   protected $fillable = ['name', 'img'];
 
-  public function posts()
+  public function products()
   {
     return $this->hasMany(Product::class);
   }

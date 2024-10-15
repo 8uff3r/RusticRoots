@@ -9,11 +9,11 @@ declare module 'ziggy-js' {
     "product.show": [
         {
             "name": "product",
-            "required": true,
-            "binding": "id"
+            "required": true
         }
     ],
     "product.store": [],
+    "product.index": [],
     "register": [],
     "login": [],
     "password.request": [],

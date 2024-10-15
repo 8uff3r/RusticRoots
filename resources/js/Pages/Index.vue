@@ -55,12 +55,6 @@ const carouselImgs = [
       <ProductCollectionLanding :products="topProducts" />
       <Categories :categories="topCategories" />
       <Offers :offers="topOffers" />
-      <!-- <Reviews /> -->
-      <!--
-TODO:
-Offer
-Brands
--->
     </AuthenticatedLayout>
   </div>
 </template>
