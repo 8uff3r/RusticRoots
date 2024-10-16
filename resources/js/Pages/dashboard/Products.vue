@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import ProductsTable from '@/Components/Dashboard/ProductsTable.vue';
 import Dashboard from '@/Layouts/Dashboard.vue';
+import { useFetchProducts } from '@/query/dashboard/products';
 import { Button } from '@/ShadComponents/ui/button';
 import { Product } from '@/types';
 
-defineProps<{
+const props = defineProps<{
   products: Product[];
 }>();
+const { data: products } = useFetchProducts(props.products);
 </script>
 
 <template>
@@ -30,7 +32,7 @@ defineProps<{
       </template>
       <template v-else>
         <div class="mx-8 flex w-full flex-col items-center justify-start">
-          <ProductsTable :products />
+          <ProductsTable v-model="products" />
         </div>
       </template>
     </main>

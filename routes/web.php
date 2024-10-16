@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::post('/product', [ProductController::class, 'store'])->name('product.store');
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::post('/products/{product}', [ProductController::class, 'update'])->name('product.update');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/api.php';

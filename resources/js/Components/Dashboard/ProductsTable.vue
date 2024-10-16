@@ -39,11 +39,8 @@ import { h, ref } from 'vue';
 import { Product } from '@/types';
 import DataTableDropDown from './DataTableDropDown.vue';
 import EditProduct from './EditProduct.vue';
-// import DropdownAction from './DataTableDemoColumn.vue';
 
-const props = defineProps<{
-  products: Product[];
-}>();
+const products = defineModel<Product[]>({ required: true });
 export interface Payment {
   id: string;
   amount: number;
@@ -153,7 +150,7 @@ const rowSelection = ref({});
 const expanded = ref<ExpandedState>({});
 
 const table = useVueTable({
-  data: props.products,
+  data: products,
   columns,
   getCoreRowModel: getCoreRowModel(),
   getPaginationRowModel: getPaginationRowModel(),

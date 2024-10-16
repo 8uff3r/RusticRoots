@@ -14,6 +14,13 @@ declare module 'ziggy-js' {
     ],
     "product.store": [],
     "product.index": [],
+    "product.update": [
+        {
+            "name": "product",
+            "required": true,
+            "binding": "id"
+        }
+    ],
     "register": [],
     "login": [],
     "password.request": [],

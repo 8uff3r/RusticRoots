@@ -59,7 +59,16 @@ class ProductController extends Controller
    */
   public function update(Request $request, Product $product)
   {
-    //
+    $validatedData = $request->validate([
+      'name' => 'required|string|max:255',
+      'price' => 'required|numeric',
+      // 'category_id' => 'required|exists:categories,id',
+      'description' => 'string',
+      // Add other fields as necessary
+    ]);
+    $success = $product->update($validatedData);
+
+    return $success;
   }
 
   /**
