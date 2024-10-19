@@ -13,7 +13,6 @@ import CartSheet from '@/Components/Cart/CartSheet.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
 import { Button } from '@/ShadComponents/ui/button';
-import { Icon } from '@iconify/vue';
 import Footer from '@/Components/Footer.vue';
 import {
   DropdownMenu,

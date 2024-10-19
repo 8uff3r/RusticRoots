@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\CartItemService;
 use App\Services\CartService;
 use App\Services\ProductService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,12 @@ class AppServiceProvider extends ServiceProvider
    */
   public function register(): void
   {
-    $services = [ProductService::class, CartService::class, CartItemService::class];
+    $services = [
+      ProductService::class,
+      CartService::class,
+      CartItemService::class,
+      UserService::class,
+    ];
 
     // foreach ($services as $service) {
     //   $this->app->singleton($service, function () use ($service) {

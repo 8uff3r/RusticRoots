@@ -5,13 +5,6 @@ import { Badge } from '@/ShadComponents/ui/badge';
 
 import { Button } from '@/ShadComponents/ui/button';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from '@/ShadComponents/ui/card';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -29,7 +22,6 @@ import {
   LineChart,
   Menu,
   Package,
-  Package2,
   Search,
   ShoppingCart,
   Users
@@ -41,9 +33,9 @@ import {
     <div class="bg-muted/40 hidden border-r dark:border-slate-800 md:block">
       <div class="flex h-full max-h-screen flex-col gap-2">
         <div class="flex h-14 items-center border-b px-4 dark:border-slate-800 lg:h-[60px] lg:px-6">
-          <a href="/" class="flex items-center gap-2 font-semibold">
+          <Link href="/" class="flex items-center gap-2 font-semibold">
             <ApplicationLogo />
-          </a>
+          </Link>
           <Button variant="outline" size="icon" class="ml-auto h-8 w-8">
             <Bell class="h-4 w-4" />
             <span class="sr-only">Toggle notifications</span>
@@ -118,50 +110,37 @@ import {
           </SheetTrigger>
           <SheetContent side="left" class="flex flex-col">
             <nav class="grid gap-2 text-lg font-medium">
-              <a href="#" class="flex items-center gap-2 text-lg font-semibold">
-                <Package2 class="h-6 w-6" />
-                <span class="sr-only">Acme Inc</span>
-              </a>
-              <a
-                href="#"
+              <Link href="/" class="flex items-center gap-2 text-lg font-semibold">
+                <ApplicationLogo />
+              </Link>
+              <Link
+                :href="route('dashboard')"
                 class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
               >
                 <Home class="h-5 w-5" />
                 Dashboard
-              </a>
-              <a
-                href="#"
-                class="bg-muted text-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
-              >
-                <ShoppingCart class="h-5 w-5" />
-                Orders
-                <Badge
-                  class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                >
-                  6
-                </Badge>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                :href="route('dashboard.products')"
                 class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
               >
                 <Package class="h-5 w-5" />
                 Products
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                :href="route('dashboard.customers')"
                 class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
               >
                 <Users class="h-5 w-5" />
                 Customers
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
               >
                 <LineChart class="h-5 w-5" />
                 Analytics
-              </a>
+              </Link>
             </nav>
           </SheetContent>
         </Sheet>

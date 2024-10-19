@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { router } from '@inertiajs/vue3';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query';
 import { Product } from '@/types';
 
@@ -17,7 +16,7 @@ function updateProduct(product: Product) {
 }
 
 export function useFetchProducts(initialData: any) {
-  return useQuery({
+  return useQuery<Product[]>({
     queryKey: ['DBProducts'],
     queryFn: fetchProducts,
     initialData

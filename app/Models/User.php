@@ -19,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $role
  * @property-read \App\Models\Cart|null $cart
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
@@ -33,9 +34,16 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
+
+enum UserRole: string
+{
+  case ADMIN = 'admin';
+  case CUSTOMER = 'customer';
+}
 class User extends Authenticatable
 {
   use HasFactory, Notifiable;
@@ -45,7 +53,7 @@ class User extends Authenticatable
    *
    * @var array<int, string>
    */
-  protected $fillable = ['name', 'email', 'password'];
+  protected $fillable = ['name', 'email', 'password', 'role'];
 
   /**
    * The attributes that should be hidden for serialization.
@@ -59,13 +67,10 @@ class User extends Authenticatable
    *
    * @return array<string, string>
    */
-  protected function casts(): array
-  {
-    return [
-      'email_verified_at' => 'datetime',
-      'password' => 'hashed',
-    ];
-  }
+  protected $casts = [
+    'email_verified_at' => 'datetime',
+    'password' => 'hashed',
+  ];
 
   /**
    * @return HasOne<Cart>
@@ -73,5 +78,13 @@ class User extends Authenticatable
   public function cart(): HasOne
   {
     return $this->hasOne(Cart::class);
+  }
+  public function isAdmin(): bool
+  {
+    return $this->role == UserRole::ADMIN->value;
+  }
+  public function isCustomer(): bool
+  {
+    return $this->role == UserRole::CUSTOMER->value;
   }
 }

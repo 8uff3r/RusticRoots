@@ -36,11 +36,12 @@ import {
 } from '@tanstack/vue-table';
 import { ArrowUpDown, ChevronDown } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import { Product } from '@/types';
+import { User } from '@/types';
 import DataTableDropDown from './DataTableDropDown.vue';
 import EditProduct from './EditProduct.vue';
+import EditUser from './EditUser.vue';
 
-const products = defineModel<Product[]>({ default: [] });
+const customers = defineModel<User[]>({ default: [] });
 export interface Payment {
   id: string;
   amount: number;
@@ -48,7 +49,7 @@ export interface Payment {
   email: string;
 }
 
-const columns: ColumnDef<Product>[] = [
+const columns: ColumnDef<User>[] = [
   {
     id: 'select',
     header: ({ table }) =>
@@ -77,9 +78,7 @@ const columns: ColumnDef<Product>[] = [
         Button,
         {
           variant: 'ghost',
-          onClick() {
-            column.toggleSorting(column.getIsSorted() === 'asc');
-          }
+          onClick: () => column.toggleSorting(column.getIsSorted() === 'asc')
         },
         () => ['Name', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })]
       );
@@ -87,59 +86,28 @@ const columns: ColumnDef<Product>[] = [
     cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('name'))
   },
   {
-    accessorKey: 'description',
-    header: 'Description',
-    cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('description'))
+    accessorKey: 'role',
+    header: 'Role',
+    cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('role'))
   },
   {
-    accessorKey: 'price',
-    header: ({ column }) => {
-      return h(
-        'div',
-        {
-          class: 'flex w-full justify-end'
-        },
-        [
-          h(
-            Button,
-            {
-              class: 'self-end',
-              variant: 'ghost',
-              onClick() {
-                column.toggleSorting(column.getIsSorted() === 'asc');
-              }
-            },
-            () => ['Price', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })]
-          )
-        ]
-      );
-    },
-    cell: ({ row }) => {
-      const amount = Number.parseFloat(row.getValue('price'));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      }).format(amount);
-
-      return h('div', { class: 'text-right font-medium' }, formatted);
-    }
+    accessorKey: 'email',
+    header: 'Email',
+    cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('email'))
   },
   {
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const product = row.original;
-
+      const customer = row.original;
       return h(
         'div',
         { class: 'relative' },
         h(DataTableDropDown, {
-          row: product,
+          row: customer,
           onEdit: (val) => {
             open.value = true;
-            editingProduct.value = val;
+            editingUser.value = val;
           }
         })
       );
@@ -154,7 +122,7 @@ const rowSelection = ref({});
 const expanded = ref<ExpandedState>({});
 
 const table = useVueTable({
-  data: products,
+  data: customers,
   columns,
   getCoreRowModel: getCoreRowModel(),
   getPaginationRowModel: getPaginationRowModel(),
@@ -185,11 +153,11 @@ const table = useVueTable({
   }
 });
 const open = ref(false);
-const editingProduct = ref<Product>();
+const editingUser = ref<User>();
 </script>
 
 <template>
-  <EditProduct mode="edit" v-model:open="open" no-trigger :product="editingProduct" />
+  <EditUser mode="edit" v-model:open="open" no-trigger :user="editingUser" />
   <div class="w-full">
     <div class="flex items-center gap-2 py-4">
       <Input
@@ -198,7 +166,7 @@ const editingProduct = ref<Product>();
         :model-value="table.getColumn('name')?.getFilterValue() as string"
         @update:model-value="table.getColumn('name')?.setFilterValue($event)"
       />
-      <EditProduct mode="add" />
+      <EditUser mode="add" />
       <DropdownMenu>
         <DropdownMenuTrigger as-child>
           <Button variant="outline" class="ml-auto">

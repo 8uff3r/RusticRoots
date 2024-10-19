@@ -6,26 +6,24 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Route::get('/', function () {
-//   return Inertia::render('Welcome', [
-//     'canLogin' => Route::has('login'),
-//     'canRegister' => Route::has('register'),
-//     'laravelVersion' => Application::VERSION,
-//     'phpVersion' => PHP_VERSION,
-//   ]);
-// });
-Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/', [LandingPageController::class, 'index'])->name('index');
 
-Route::get('/dashboard', function () {
-  return Inertia::render('dashboard/Index');
-})
-  ->middleware(['auth', 'verified'])
-  ->name('dashboard');
-Route::get('/dashboard/products', [DashboardController::class, 'products']);
+Route::middleware('admin')->group(function () {
+  Route::get('/dashboard', function () {
+    return Inertia::render('dashboard/Index');
+  })->name('dashboard');
+  Route::get('/dashboard/products', [DashboardController::class, 'products'])->name(
+    'dashboard.products'
+  );
+  Route::get('/dashboard/customers', [DashboardController::class, 'customers'])->name(
+    'dashboard.customers'
+  );
+  Route::get('/customers', [UserController::class, 'indexCustomers'])->name('users.indexCustomers');
+});
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

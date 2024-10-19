@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Session;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property int|null $user_id

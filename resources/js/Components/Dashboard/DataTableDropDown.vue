@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends { id: number }">
 import { Button } from '@/ShadComponents/ui/button';
 import {
   DropdownMenu,
@@ -12,7 +12,7 @@ import { MoreHorizontal } from 'lucide-vue-next';
 import { Product } from '@/types';
 
 defineProps<{
-  product: Product;
+  row: T;
 }>();
 
 function copy(id: number | string) {
@@ -31,9 +31,9 @@ defineEmits(['edit']);
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end">
       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-      <DropdownMenuItem @click="copy(product.id)"> Copy product ID </DropdownMenuItem>
+      <DropdownMenuItem @click="copy(row.id)"> Copy ID </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem @click="$emit('edit', product)"> Edit Product </DropdownMenuItem>
+      <DropdownMenuItem @click="$emit('edit', row)"> Edit </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
