@@ -44,6 +44,12 @@ class ProductController extends Controller
   public function show(int $id)
   {
     $product = Product::whereId($id)->with('category')->get()->get(0);
+    if (!$product) {
+      return Inertia::render('Error', [
+        'status' => 404,
+        'message' => 'Product Not Found!',
+      ]);
+    }
     $productsInSameCategory = Product::inRandomOrder()
       ->where('category_id', $product->category_id)
       ->limit(4)
