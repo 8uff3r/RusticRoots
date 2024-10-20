@@ -137,8 +137,6 @@ http {
 
         add_header X-Content-Type-Options "nosniff";
 
-        proxy_pass_header X-Inertia;
-
         client_max_body_size 35M;
 
         index index.php;
@@ -165,6 +163,7 @@ http {
         ) else ()
 
         location ~ \.php$ {
+            proxy_pass_header X-Inertia;
             fastcgi_buffer_size 8k;
             fastcgi_pass 127.0.0.1:9000;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
