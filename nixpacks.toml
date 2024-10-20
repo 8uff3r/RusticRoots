@@ -139,7 +139,6 @@ http {
         add_header Content-Security-Policy upgrade-insecure-requests;
         add_header X-Inertia $http_x_inertia;
         add_header Vary "X-Inertia";
-        add_header Access-Control-Allow-Headers X-Inertia;
         proxy_cookie_flags ~ secure;
 
         client_max_body_size 35M;
