@@ -137,7 +137,7 @@ http {
 
         add_header X-Content-Type-Options "nosniff";
         add_header Content-Security-Policy upgrade-insecure-requests;
-        add_header X-Inertia true;
+        add_header X-Inertia $http_x_inertia;
 
         client_max_body_size 35M;
 
