@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Footer from '@/Components/Footer.vue';
 import BentoCard from '@/Components/Inspira/BentoGrid/BentoCard.vue';
 import BentoGrid from '@/Components/Inspira/BentoGrid/BentoGrid.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAddToCart, useCartItems, useRmFromCart, useUpdateQuantity } from '@/query/cart';
 import { Button } from '@/ShadComponents/ui/button';
+import { Label } from '@/ShadComponents/ui/label';
 import {
   NumberField,
   NumberFieldContent,
