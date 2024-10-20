@@ -44,7 +44,7 @@ const components: any[] = [];
               <ul class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 <li v-for="component in components" :key="component.title">
                   <NavigationMenuLink as-child>
-                    <a
+                    <Link
                       :href="component.href"
                       class="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
                     >
@@ -52,7 +52,7 @@ const components: any[] = [];
                       <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
                         {{ component.description }}
                       </p>
-                    </a>
+                    </Link>
                   </NavigationMenuLink>
                 </li>
               </ul>
@@ -70,20 +70,20 @@ const components: any[] = [];
         <ThemeToggle />
         <CartSheet :products="[]" />
         <div class="sm:flex sm:gap-4" v-if="!$page.props.auth?.user">
-          <a
+          <Link
             class="rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-amber-500"
             href="/login"
           >
             Login
-          </a>
+          </Link>
 
           <div class="hidden sm:flex">
-            <a
+            <Link
               class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-amber-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
               href="/register"
             >
               Register
-            </a>
+            </Link>
           </div>
         </div>
         <!-- <Link :href="route('profile.edit')"> -->

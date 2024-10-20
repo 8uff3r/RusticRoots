@@ -5,6 +5,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 const props = defineProps<{
   email: string;
@@ -28,7 +29,7 @@ const submit = () => {
 </script>
 
 <template>
-  <GuestLayout>
+  <AuthenticatedLayout>
     <Head title="Reset Password" />
 
     <form @submit.prevent="submit">
@@ -84,5 +85,5 @@ const submit = () => {
         </PrimaryButton>
       </div>
     </form>
-  </GuestLayout>
+  </AuthenticatedLayout>
 </template>

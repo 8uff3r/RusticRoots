@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 const props = defineProps<{
   status?: string;
@@ -18,7 +19,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 </script>
 
 <template>
-  <GuestLayout>
+  <AuthenticatedLayout>
     <Head title="Email Verification" />
 
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
@@ -49,5 +50,5 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         >
       </div>
     </form>
-  </GuestLayout>
+  </AuthenticatedLayout>
 </template>
