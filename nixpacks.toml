@@ -137,7 +137,6 @@ http {
 
         add_header X-Content-Type-Options "nosniff";
         add_header Content-Security-Policy upgrade-insecure-requests;
-        add_header X-Inertia true;
 
         client_max_body_size 35M;
 
@@ -164,7 +163,6 @@ http {
             error_page 404 /index.php;
         ) else ()
 
-        proxy_pass_header X-Inertia;
         location ~ \.php$ {
             fastcgi_buffer_size 8k;
             fastcgi_pass 127.0.0.1:9000;
