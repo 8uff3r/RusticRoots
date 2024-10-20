@@ -137,6 +137,8 @@ http {
 
         add_header X-Content-Type-Options "nosniff";
 
+        proxy_pass_header X-Inertia;
+
         client_max_body_size 35M;
 
         index index.php;
