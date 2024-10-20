@@ -138,6 +138,9 @@ http {
         add_header X-Content-Type-Options "nosniff";
         add_header Content-Security-Policy upgrade-insecure-requests;
         add_header X-Inertia $http_x_inertia;
+        add_header Vary "X-Inertia";
+        add_header Access-Control-Allow-Headers X-Inertia;
+        proxy_cookie_flags ~ secure;
 
         client_max_body_size 35M;
 
@@ -170,6 +173,7 @@ http {
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
             include $!{nginx}/conf/fastcgi_params;
             include $!{nginx}/conf/fastcgi.conf;
+            add_header Vary "X-Inertia";
 
             fastcgi_param PHP_VALUE "upload_max_filesize=30M \n post_max_size=35M";
         }
