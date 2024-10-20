@@ -25,7 +25,10 @@ defineProps<{
 
     <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <li v-for="(p, i) in products" :key="i">
-        <Link :href="`/product/${p.id}`" class="group relative block overflow-hidden rounded-lg">
+        <Link
+          :href="route('product.show', { id: p.id })"
+          class="group relative block overflow-hidden rounded-lg"
+        >
           <img
             :src="p.imgs[0]"
             class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"

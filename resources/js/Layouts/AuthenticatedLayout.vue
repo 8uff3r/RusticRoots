@@ -72,7 +72,7 @@ const components: any[] = [];
         <div class="sm:flex sm:gap-4" v-if="!$page.props.auth?.user">
           <Link
             class="rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-amber-500"
-            href="/login"
+            :href="route('login')"
           >
             Login
           </Link>
@@ -80,7 +80,7 @@ const components: any[] = [];
           <div class="hidden sm:flex">
             <Link
               class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-amber-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-              href="/register"
+              :href="route('register')"
             >
               Register
             </Link>
