@@ -72,7 +72,7 @@ const components: any[] = [];
         <div class="sm:flex sm:gap-4" v-if="!$page.props.auth?.user">
           <Link
             class="rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-amber-500"
-            :href="route('login')"
+            href="/login"
           >
             Login
           </Link>
@@ -80,7 +80,7 @@ const components: any[] = [];
           <div class="hidden sm:flex">
             <Link
               class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-amber-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-              :href="route('register')"
+              href="/register"
             >
               Register
             </Link>
@@ -104,7 +104,7 @@ const components: any[] = [];
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link :href="route('logout')" method="post">Logout </Link>
+              <Link href="/logout" method="post">Logout </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
