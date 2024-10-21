@@ -16,7 +16,7 @@ RUN rm -rf /app
 COPY . /app
 
 WORKDIR /app
-
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /bin/
 RUN install-php-extensions \
     pcntl pdo_mysql redis
     # Add other PHP extensions here...
