@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp
+FROM php:8.2-cli
 RUN \
   apt-get update && \
   apt-get install git unzip bash curl -y && \
@@ -9,19 +9,25 @@ RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /bin/composer
-RUN curl -fsSL https://bun.sh/install | bash
 
 RUN rm -rf /app
 
 COPY . /app
 
 WORKDIR /app
+
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /bin/
+
 RUN install-php-extensions \
-    pcntl pdo_mysql redis
+    pcntl pdo_mysql mysqli sockets
     # Add other PHP extensions here...
-EXPOSE 8090
 RUN composer install
+
+RUN php artisan octane:install --server roadrunner -n
+
+RUN curl -fsSL https://bun.sh/install | bash
 RUN ~/.bun/bin/bun install
 RUN ~/.bun/bin/bun run build
-ENTRYPOINT ["php", "artisan", "octane:frankenphp","--host", "0.0.0.0", "--port", "8090"]
+
+EXPOSE 8090
+ENTRYPOINT ["php", "artisan", "octane:start","--host", "0.0.0.0", "--port", "8090"]
