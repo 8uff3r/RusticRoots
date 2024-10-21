@@ -137,9 +137,9 @@ http {
 
         add_header X-Content-Type-Options "nosniff";
         add_header Content-Security-Policy upgrade-insecure-requests;
-        add_header X-Inertia $http_x_inertia;
-        add_header Vary "X-Inertia";
         proxy_cookie_flags ~ secure;
+        add_header X-Inertia $http_x_inertia;
+        add_header X-Inertia $upstream_http_x_inertia;
 
         proxy_http_version 1.1;
 
@@ -175,6 +175,8 @@ http {
             include $!{nginx}/conf/fastcgi_params;
             include $!{nginx}/conf/fastcgi.conf;
             add_header Vary "X-Inertia";
+            add_header X-Inertia $http_x_inertia;
+            add_header X-Inertia $upstream_http_x_inertia;
 
             fastcgi_param PHP_VALUE "upload_max_filesize=30M \n post_max_size=35M";
         }
