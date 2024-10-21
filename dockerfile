@@ -30,4 +30,4 @@ RUN ~/.bun/bin/bun install
 RUN ~/.bun/bin/bun run build
 
 EXPOSE 8090
-ENTRYPOINT ["php", "artisan", "octane:start","--host", "0.0.0.0", "--port", "8090"]
+ENTRYPOINT ["php", "artisan", "octane:start","--host", "0.0.0.0", "--port", "8090", "--server", "roadrunner", "--rr-config", ".rr.yaml"]

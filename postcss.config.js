@@ -1,4 +1,4 @@
-const animate = require('tailwindcss-animate');
+import animate from 'tailwindcss-animate';
 import forms from '@tailwindcss/forms';
 export default {
   plugins: {
