@@ -17,9 +17,9 @@ COPY . /app
 
 WORKDIR /app
 
-# ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /bin/
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /bin/
 #
-# RUN install-php-extensions \
+RUN install-php-extensions pcntl
 #     pcntl pdo_mysql mysqli sockets
 #     # Add other PHP extensions here...
 RUN composer install
